@@ -1,7 +1,18 @@
+import 'package:alive_app/views/login_screen.dart';
 import 'package:flutter/material.dart';
 
-
-
+/// ─────────────────────────────────────────────
+///  SPLASH SCREEN TEMPLATE
+///  Style : Material Design
+///  State : setState
+///
+///  HOW TO USE:
+///  1. Replace 'AppName' with your app name.
+///  2. Replace the icon with your logo asset:
+///       Image.asset('assets/logo.png', width: 120)
+///  3. Change _navigateTo() to your first route.
+///  4. Adjust _splashDuration if needed.
+/// ─────────────────────────────────────────────
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -12,10 +23,10 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
-  //  CONFIG 
+  // ── CONFIG ──────────────────────────────────
   static const Duration _splashDuration = Duration(seconds: 3);
-  static const String _appName = 'Alive';
-  
+  static const String _appName = 'Alive'; 
+  // ────────────────────────────────────────────
 
   late AnimationController _controller;
   late Animation<double> _fadeAnimation;
@@ -49,10 +60,8 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   void _navigateTo() {
-    // Replace with your route, e.g.:
-    // Navigator.pushReplacementNamed(context, '/login');
-    // Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => LoginScreen()));
-    debugPrint('Navigate to next screen');
+     Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => LoginScreen()));
+  
   }
 
   @override
@@ -63,10 +72,10 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+  
 
     return Scaffold(
-      backgroundColor: colorScheme.primary,
+      backgroundColor: Colors.white,
       body: Center(
         child: FadeTransition(
           opacity: _fadeAnimation,
@@ -75,7 +84,7 @@ class _SplashScreenState extends State<SplashScreen>
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                //  Logo / Icon 
+                // ── Logo / Icon ──────────────────
                 Container(
                   width: 110,
                   height: 110,
@@ -90,16 +99,12 @@ class _SplashScreenState extends State<SplashScreen>
                       ),
                     ],
                   ),
-                  child: Icon(
-                    Icons.bolt_rounded, 
-                    size: 64,
-                    color: colorScheme.primary,
-                  ),
+                  child: Image.asset('assets/alive_logo.png'),
                 ),
 
                 const SizedBox(height: 32),
 
-                // App Name
+                // ── App Name ─────────────────────
                 Text(
                   _appName,
                   style: const TextStyle(
@@ -110,12 +115,11 @@ class _SplashScreenState extends State<SplashScreen>
                   ),
                 ),
 
-           
 
 
                 const SizedBox(height: 64),
 
-                //  Loading Indicator
+                // ── Loading Indicator ────────────
                 SizedBox(
                   width: 36,
                   height: 36,
