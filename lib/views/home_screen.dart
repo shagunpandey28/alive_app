@@ -21,14 +21,14 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   // ── State ─────────────────────────────────
   int _selectedNavIndex = 0;
-  
+
   // Create separate widgets for each tab
   final List<Widget> _pages = [
-    const HomeContent(),      // Home tab content
-    const PartyScreen(),      // Party tab
-    const LiveScreen(),       // Live tab (for Go Live button)
-    const ChatsScreen(),      // Chats tab
-    const ProfileScreen(),    // Profile tab
+    const HomeContent(), // Home tab content
+    const PartyScreen(), // Party tab
+    const LiveScreen(), // Live tab (for Go Live button)
+    const ChatsScreen(), // Chats tab
+    const ProfileScreen(), // Profile tab
   ];
 
   // ── BUILD ──────────────────────────────────
@@ -39,61 +39,64 @@ class _HomeScreenState extends State<HomeScreen> {
 
       // ── App Bar ─────────────────────────────
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(60),
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-          decoration: const BoxDecoration(color: AppColors.white),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              // App Logo / Title
-              Row(
-                children: [
-                  Container(
-                    width: 32,
-                    height: 32,
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      gradient: LinearGradient(
-                        colors: [AppColors.primary, AppColors.secondary],
+        preferredSize: const Size.fromHeight(90),
+        child: Padding(
+          padding: const EdgeInsets.only(top: 20),
+          child: Container(
+            height: 100,
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+            decoration: const BoxDecoration(color: AppColors.white),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                // App Logo / Title
+                Row(
+                  children: [
+                    Container(
+                      width: 32,
+                      height: 40,
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        gradient: LinearGradient(
+                          colors: [AppColors.primary, AppColors.secondary],
+                        ),
+                      ),
+                      child: Center(
+                        child: Image.asset('assets/alive_logo.png'),
                       ),
                     ),
-                    child: Center(child: Image.asset('assets/alive_logo.png')),
-                  ),
-                  const SizedBox(width: 8),
-                  const Text(
-                    'Alive',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.black,
+                    const SizedBox(width: 8),
+                    const Text(
+                      'Alive',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.black,
+                      ),
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                ),
 
-              // Right actions
-              Row(
-                children: [
-                  _buildIconButton(Icons.search_outlined, () {
-                    debugPrint('Search tapped');
-                  }),
-                  const SizedBox(width: 4),
-                  _buildIconButton(Icons.notifications_outlined, () {
-                    debugPrint('Notifications tapped');
-                  }),
-                ],
-              ),
-            ],
+                // Right actions
+                Row(
+                  children: [
+                    _buildIconButton(Icons.search_outlined, () {
+                      debugPrint('Search tapped');
+                    }),
+                    const SizedBox(width: 4),
+                    _buildIconButton(Icons.notifications_outlined, () {
+                      debugPrint('Notifications tapped');
+                    }),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
 
       // ── Body with IndexedStack ──────────────
-      body: IndexedStack(
-        index: _selectedNavIndex,
-        children: _pages,
-      ),
+      body: IndexedStack(index: _selectedNavIndex, children: _pages),
 
       // ── Bottom Navigation Bar ──────────────
       bottomNavigationBar: CurvedNavigationBar(
@@ -111,18 +114,10 @@ class _HomeScreenState extends State<HomeScreen> {
         },
         items: [
           // Home
-          _buildNavItem(
-            icon: Icons.home_filled,
-            label: 'Home',
-            index: 0,
-          ),
+          _buildNavItem(icon: Icons.home_filled, label: 'Home', index: 0),
 
           // Party
-          _buildNavItem(
-            icon: Icons.celebration,
-            label: 'Party',
-            index: 1,
-          ),
+          _buildNavItem(icon: Icons.celebration, label: 'Party', index: 1),
 
           // Go Live (Special Button)
           _buildGoLiveButton(),
@@ -135,11 +130,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
 
           // Profile
-          _buildNavItem(
-            icon: Icons.person_outline,
-            label: 'Profile',
-            index: 4,
-          ),
+          _buildNavItem(icon: Icons.person_outline, label: 'Profile', index: 4),
         ],
       ),
     );
